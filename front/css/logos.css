@@ -1,0 +1,175 @@
+/* Mengimpor font dari Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Mengatur gaya dasar untuk elemen <body> */
+body {
+  min-height: 100vh; /* Tinggi minimum 100% dari viewport */
+  margin: 0; /* Menghapus margin default */
+  font-family: Poppins; /* Mengatur font utama menjadi Poppins */
+  color: #1e1e1e; /* Warna teks utama */
+  background-color: #cdcdcd; /* Warna latar belakang */
+  background-image: repeating-linear-gradient(
+      to right,
+      transparent 0 150px,
+      #0001 150px 151px
+    ),
+    repeating-linear-gradient(to bottom, transparent 0 150px, #0001 150px 151px),
+    linear-gradient(to right, #cdcdcdcc, #cdcdcdcc), url(logot/bg.jpg); /* Menambahkan kombinasi gradien dan gambar latar */
+}
+
+/* Mengatur gaya umum untuk semua elemen */
+* {
+  padding: 0; /* Menghapus padding default */
+  margin: 0; /* Menghapus margin default */
+}
+
+/* Mengatur elemen banner */
+.banner {
+  margin-top: -50px; /* Menggeser banner ke atas */
+  height: 100vh; /* Tinggi penuh viewport */
+  overflow: hidden; /* Menyembunyikan konten yang keluar dari area */
+  position: relative; /* Untuk mengatur posisi elemen child */
+}
+
+/* Gaya untuk produk yang ditampilkan */
+.product {
+  position: absolute; /* Mengatur posisi absolut di dalam elemen parent */
+  left: 50%; /* Memposisikan elemen di tengah secara horizontal */
+  transform: translateX(-50%); /* Menyesuaikan posisi ke tengah */
+  bottom: 170px; /* Jarak dari bawah elemen parent */
+  z-index: 2; /* Membawa elemen ke atas */
+  width: 500px; /* Lebar elemen */
+  transition: 0.7s; /* Transisi animasi */
+}
+
+/* Mengatur elemen soda di dalam produk */
+.product .soda {
+  position: absolute; /* Memposisikan di dalam parent */
+  bottom: 0; /* Memastikan soda berada di bawah */
+  left: calc(50%); /* Posisi horizontal di tengah */
+  transform: translateX(-50%); /* Memperbaiki posisi ke tengah */
+}
+
+/* Gaya untuk elemen soda */
+.soda {
+  --left: 0px; /* Variabel CSS untuk posisi latar */
+  background: var(--url) var(--left), url(logow.png) 0 0; /* Gambar latar */
+  background-size: auto 100%; /* Mengatur ukuran gambar latar */
+  width: 280px; /* Lebar elemen */
+  aspect-ratio: 2 / 2; /* Rasio aspek elemen */
+  background-blend-mode: multiply; /* Mode pencampuran warna latar */
+  transition: 0.8s; /* Transisi untuk animasi */
+  mask-image: url(logow.png); /* Masking menggunakan gambar */
+  mask-size: auto 100%; /* Ukuran mask */
+}
+
+/* Mengatur elemen soda kedua */
+.soda:nth-child(2) {
+  opacity: 0; /* Soda kedua disembunyikan secara default */
+}
+
+/* Efek hover pada produk */
+.product:hover {
+  bottom: 300px; /* Menggeser produk ke atas */
+}
+
+/* Efek hover pada soda kedua */
+.product:hover .soda:nth-child(2) {
+  opacity: 1; /* Menampilkan soda kedua */
+  --left: 500px; /* Menggeser posisi latar */
+}
+
+/* Efek hover pada soda pertama */
+.product:hover .soda:nth-child(1) {
+  opacity: 0; /* Menyembunyikan soda pertama */
+  --left: 500px; /* Menggeser posisi latar */
+}
+
+/* Gaya untuk elemen batu (rock) */
+.rock {
+  position: absolute; /* Posisi absolut di dalam parent */
+  inset: 0 0 0 0; /* Mengisi seluruh area parent */
+  width: 100%; /* Lebar penuh */
+  pointer-events: none; /* Tidak dapat diinteraksi */
+}
+
+/* Gaya untuk gambar batu */
+.rock img {
+  margin: 10px; /* Jarak antar gambar */
+  width: 90%; /* Lebar gambar relatif terhadap parent */
+  height: auto; /* Menjaga proporsi gambar */
+}
+
+/* Gaya untuk batu pertama */
+.rock img:nth-child(1) {
+  position: absolute; /* Posisi absolut */
+  height: 140px; /* Tinggi gambar */
+  left: 50%; /* Posisi horizontal di tengah */
+  transform: translateX(-50%); /* Memperbaiki posisi ke tengah */
+  bottom: 30px; /* Jarak dari bawah */
+  transition: 0.7s; /* Transisi animasi */
+  z-index: 1; /* Menentukan lapisan */
+}
+
+/* Gaya untuk batu kedua */
+.rock img:nth-child(2) {
+  position: absolute;
+  height: 50%; /* Tinggi gambar relatif terhadap parent */
+  left: 0; /* Posisi di kiri */
+  bottom: 60px; /* Jarak dari bawah */
+  transition: 0.7s;
+}
+
+/* Gaya untuk batu ketiga */
+.rock img:nth-child(3) {
+  position: absolute;
+  height: 60%;
+  right: 0; /* Posisi di kanan */
+  bottom: 20px; /* Jarak dari bawah */
+  transition: 0.7s;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+  .rock img {
+    max-width: 100px; /* Ukuran batu lebih kecil */
+  }
+}
+
+/* Responsif untuk layar sangat kecil */
+@media (max-width: 480px) {
+  .rock img {
+    max-width: 80px; /* Ukuran batu lebih kecil lagi */
+  }
+}
+
+/* Efek hover pada batu di dalam banner */
+.banner:has(.product:hover) .rock img:nth-child(1) {
+  transform: translateX(-50%) translateY(50px); /* Menggerakkan batu pertama */
+}
+.banner:has(.product:hover) .rock img:nth-child(2) {
+  transform: translateX(-100px) translateY(100px); /* Menggerakkan batu kedua */
+}
+.banner:has(.product:hover) .rock img:nth-child(3) {
+  transform: translateX(100px) translateY(100px); /* Menggerakkan batu ketiga */
+}
+
+/* Responsif untuk soda pada layar maksimal 1023px */
+@media screen and (max-width: 1023px) {
+  .soda {
+    width: 400px; /* Lebar elemen soda disesuaikan */
+  }
+}
+
+/* Responsif untuk soda pada layar maksimal 767px */
+@media screen and (max-width: 767px) {
+  .soda {
+    width: 250px; /* Lebar elemen soda lebih kecil */
+  }
+  header img {
+    display: none; /* Menyembunyikan gambar pada header */
+  }
+  header .author {
+    width: 100%; /* Lebar penuh untuk elemen author */
+  }
+}
